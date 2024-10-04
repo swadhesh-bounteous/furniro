@@ -6,9 +6,7 @@ import heart from "../../public/assets/icons/heart.svg";
 import usericon from "../../public/assets/icons/usericon.svg";
 import search from "../../public/assets/icons/search.svg";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   return (
     <header className="bg-white shadow-md">
       <nav className="container mx-auto flex justify-between items-center py-6 px-6 font-Poppins">

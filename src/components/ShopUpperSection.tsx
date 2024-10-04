@@ -1,9 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-type Props = {};
-
-const ShopUpperSection = (props: Props) => {
+const ShopUpperSection = () => {
   return (
     <section className="relative bg-[url('/assets/bg_img.png')] bg-opacity-30 bg-cover bg-center h-[400px] font-Poppins">
       <div className="absolute inset-0"></div>

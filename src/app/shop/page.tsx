@@ -3,9 +3,7 @@ import ShopFilterSection from "@/components/ShopFilterSection";
 import ShopUpperSection from "@/components/ShopUpperSection";
 import React from "react";
 
-type Props = {};
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div className="flex flex-col">
       <Navbar />

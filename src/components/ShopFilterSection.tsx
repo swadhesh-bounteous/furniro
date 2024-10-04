@@ -4,9 +4,8 @@ import filter from "../../public/assets/icons/filter.svg";
 import four_dots from "../../public/assets/icons/four_dots.svg";
 import view_list from "../../public/assets/icons/view_list.svg";
 import line from "../../public/assets/icons/line.svg";
-type Props = {};
 
-const ShopFilterSection = (props: Props) => {
+const ShopFilterSection = () => {
   return (
     <section className="flex justify-between bg-[#f9f1e7] w-full h-[100px] px-20 py-4 items-center font-Poppins">
       <div className="flex items-center h-full gap-x-8">
