@@ -1,6 +1,10 @@
-import Navbar from "@/components/Navbar";
-import ShopFilterSection from "@/components/ShopFilterSection";
-import ShopUpperSection from "@/components/ShopUpperSection";
+import Footer from "@/components/common/Footer";
+import Navbar from "@/components/navbar/Navbar";
+import { Pagination } from "@/components";
+import { ShopFeatureSection } from "@/components";
+import { ShopFilterSection } from "@/components";
+import { ShopGridSection } from "@/components";
+import { ShopUpperSection } from "@/components";
 import React from "react";
 
 const page = () => {
@@ -9,6 +13,10 @@ const page = () => {
       <Navbar />
       <ShopUpperSection />
       <ShopFilterSection />
+      <ShopGridSection />
+      <Pagination />
+      <ShopFeatureSection />
+      <Footer />
     </div>
   );
 };
