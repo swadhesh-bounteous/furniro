@@ -7,6 +7,7 @@ import ProductDetails from "@/components/productdetails/ProductDetails";
 import ProductInfo from "@/components/productinfo/ProductInfo";
 import ToggleImageSection from "@/components/toggleimagesection/ToggleImageSection";
 import { productDetails } from "@/utils/productData";
+import BreadCrumbNavigatior from "@/components/breadcrumbnavigator/BreadCrumbNavigator";
 
 const ProductPage = () => {
   return (
@@ -29,6 +30,7 @@ const ProductContent = () => {
   return (
     <div className="flex flex-col">
       <Navbar />
+      <BreadCrumbNavigatior/>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8">
         <ToggleImageSection images={product.images} />
         <ProductDetails />
