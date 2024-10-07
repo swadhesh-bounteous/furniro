@@ -4,18 +4,20 @@ import { Pagination } from "@/components";
 import { ShopFeatureSection } from "@/components";
 import { ShopGridSection } from "@/components";
 import { UpperSection } from "@/components";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
-    <div className="flex flex-col">
-      <Navbar />
-      <UpperSection pageName="Shop"/>
-      <ShopGridSection />
-      <Pagination />
-      <ShopFeatureSection />
-      <Footer />
-    </div>
+    <Suspense fallback={<div>Error Try again</div>}>
+      <div className="flex flex-col">
+        <Navbar />
+        <UpperSection pageName="Shop" />
+        <ShopGridSection />
+        <Pagination />
+        <ShopFeatureSection />
+        <Footer />
+      </div>
+    </Suspense>
   );
 };
 
