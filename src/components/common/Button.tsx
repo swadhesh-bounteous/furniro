@@ -26,7 +26,7 @@ const Button: FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "inline-flex items-center justify-center rounded-md font-medium focus:outline-none transition-colors duration-300",
+        "inline-flex items-center justify-center rounded-md focus:outline-none transition-colors duration-300",
         {
           "bg-blue-600 text-white hover:bg-blue-700": variant === "primary",
           "bg-gray-600 text-white hover:bg-gray-700": variant === "secondary",
@@ -41,7 +41,7 @@ const Button: FC<ButtonProps> = ({
           variant === "v4",
           "rounded-lg border-black border-[1px]":
           variant === "v5",
-          "opacity-50 cursor-not-allowed": disabled,
+          "opacity-50 cursor-not-allowed font-normal": disabled,
         },
         {
           "px-3 py-1 text-sm": size === "small",
