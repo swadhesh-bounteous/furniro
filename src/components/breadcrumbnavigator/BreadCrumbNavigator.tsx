@@ -5,7 +5,7 @@ import RightArrowIcon from "../../../public/assets/icons/RightArrowIcon";
 import { useRouter, useSearchParams} from "next/navigation";
 import { productDetails } from "@/utils/productData";
  
-const BreadCrumbNavigatior = () => {
+const BreadCrumbNavigator = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get("id") ?? "id1"
   const product = productDetails.find((product) => product.productId === Number(productId));
@@ -31,4 +31,4 @@ const BreadCrumbNavigatior = () => {
   );
 };
  
-export default BreadCrumbNavigatior;
+export default BreadCrumbNavigator;

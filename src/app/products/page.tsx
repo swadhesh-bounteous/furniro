@@ -3,11 +3,11 @@ import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/common/Footer";
-import ProductDetails from "@/components/productdetails/ProductDetails";
-import ProductInfo from "@/components/productinfo/ProductInfo";
-import ToggleImageSection from "@/components/toggleimagesection/ToggleImageSection";
+import { ProductDetails } from "@/components";
+import { ProductInfo } from "@/components";
+import { ToggleImageSection } from "@/components";
 import { productDetails } from "@/utils/productData";
-import BreadCrumbNavigatior from "@/components/breadcrumbnavigator/BreadCrumbNavigator";
+import {BreadCrumbNavigator} from "@/components";
 
 const ProductPage = () => {
   return (
@@ -30,7 +30,7 @@ const ProductContent = () => {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <BreadCrumbNavigatior/>
+      <BreadCrumbNavigator />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8">
         <ToggleImageSection images={product.images} />
         <ProductDetails />
