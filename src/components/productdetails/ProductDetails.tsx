@@ -11,16 +11,16 @@ import { productDetails } from "@/utils/productData";
 const ProductDetails = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id") ?? "id2";
-  
+
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+
   const product = productDetails.find((item) => item.productId === Number(id));
 
   if (!product) {
     return <p>Product not found</p>;
   }
-
-  const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
