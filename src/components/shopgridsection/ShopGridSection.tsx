@@ -16,14 +16,14 @@ const ShopGridSection = () => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const handleShowChange = (e: any) => {
+  const handleShowChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
     if (!isNaN(value) && value > 0) {
       setProductsToShow(value);
     }
   };
 
-  const handleSortChange = (e: any) => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(e.target.value);
   };
 

@@ -34,7 +34,6 @@ const ToggleImageSection: FC<ToggleImageSectionProps> = ({ images }) => {
         })}
       </div>
 
-      {/* Selected Image Display */}
       <div className="w-full h-64 sm:h-80 md:h-96 max-w-full md:max-w-lg">
         <img
           src={selectedImage.url}
