@@ -9,6 +9,14 @@ import ToggleImageSection from "@/components/toggleimagesection/ToggleImageSecti
 import { productDetails } from "@/utils/productData";
 
 const ProductPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductContent />
+    </Suspense>
+  );
+};
+
+const ProductContent = () => {
   const SearchParams = useSearchParams();
   const id = SearchParams.get("id") ?? "id2";
 
@@ -19,36 +27,23 @@ const ProductPage = () => {
   }
 
   return (
-    <Suspense fallback={<div>Error Try again</div>}>
-      <div className="flex flex-col">
-        <Navbar />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8">
-          <ToggleImageSection images={product.images} />
-          <ProductDetails
-            name={product.name}
-            price={product.price}
-            rating={product.rating}
-            reviews={product.reviews}
-            description={product.description}
-            sizes={product.sizes}
-            colors={product.colors}
-            sku={product.sku}
-            category={product.category}
-            tags={product.productTags}
-          />
-        </div>
-        <ProductInfo
-          description={product.detailedDesc}
-          additionalInfo={product.additionalInfo}
-          images={[
-            "/assets/images/three_seater_sofa_1.png",
-            "/assets/images/three_seater_sofa_2.png",
-          ]}
-          reviews={product.reviews}
-        />
-        <Footer />
+    <div className="flex flex-col">
+      <Navbar />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8">
+        <ToggleImageSection images={product.images} />
+        <ProductDetails />
       </div>
-    </Suspense>
+      <ProductInfo
+        description={product.detailedDesc}
+        additionalInfo={product.additionalInfo}
+        images={[
+          "/assets/images/three_seater_sofa_1.png",
+          "/assets/images/three_seater_sofa_2.png",
+        ]}
+        reviews={product.reviews}
+      />
+      <Footer />
+    </div>
   );
 };
 
