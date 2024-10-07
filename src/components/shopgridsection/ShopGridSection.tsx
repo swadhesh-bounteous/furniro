@@ -28,7 +28,7 @@ const ShopGridSection = () => {
   };
 
   const sortedProducts = () => {
-    let sorted = [...productDetails];
+    const sorted = [...productDetails];
     if (sortOrder === "ascending") {
       sorted.sort((a, b) => a.price - b.price); 
     } else if (sortOrder === "descending") {
