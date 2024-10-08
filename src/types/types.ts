@@ -21,6 +21,34 @@ export type ProductDetail = {
     sizes: { name: string }[]; // Array of size options
     mainImage: string; // URL of the main product image
     images: { url: string; alt: string }[]; // Array of additional images
-    shareLink: { url: string }; // Optional share link
     discount: string | null; // Discount information
 };
+
+export type ProductApi = {
+    id: number;
+    createdAt: string|null; 
+    name: string;
+    description: string;
+    detailedDescription: string;
+    additionalInfo: string;
+    price: number;
+    originalPrice: number|null;
+    sku: string;
+    category: string;
+    productTags: string[];
+    colors: string[];
+    sizes: string[];
+    mainImage: string; // URL of the main image
+    images: {
+      url: string; // URL of the image
+      alt: string; // Alternative text for the image
+    }[];
+    discount: string|null; // e.g., "20%"
+    rating: number; // Average rating
+    reviews: {
+      user: string; // Name of the user who reviewed
+      rating: number; // Rating given by the user
+      comment: string; // Comment from the user
+    }[];
+  };
+  

@@ -1,33 +1,30 @@
 "use client";
+import { productDetails } from "@/utils/productData";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
-interface ProductInfoProps {
-  description: string;
-  additionalInfo: string;
-  images: string[];
-  reviews: { user: string; rating: number; comment: string }[];
-}
-
-const ProductInfo: React.FC<ProductInfoProps> = ({
-  description,
-  additionalInfo,
-  images,
-  reviews,
-}) => {
+const ProductInfo = () => {
   const [activeTab, setActiveTab] = useState("description");
 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") ?? "id2";
+
+  const product = productDetails.find((item) => item.id === Number(id));
+  if (!product) {
+    return <p>Product not found</p>;
+  }
+
   return (
-    <div className="p-4 md:p-6">
-      {/* Tab navigation */}
-      <div className="border-b border-gray-300">
-        <ul className="flex space-x-8 md:space-x-24 justify-center text-sm md:text-base">
+    <div className="p-6 md:p-12 border-t border-gray-300">
+      <div>
+        <ul className="flex space-x-8 md:space-x-24 justify-center text-sm md:text-xl">
           <li>
             <button
-              className={`pb-2 border-b-2 ${
+              className={`pb-2 ${
                 activeTab === "description"
-                  ? "border-black"
-                  : "border-transparent"
+                  ? "font-semibold text-black"
+                  : "text-gray-500"
               } focus:outline-none`}
               onClick={() => setActiveTab("description")}
             >
@@ -36,10 +33,10 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           </li>
           <li>
             <button
-              className={`pb-2 border-b-2 ${
+              className={`pb-2 ${
                 activeTab === "additionalInfo"
-                  ? "border-black"
-                  : "border-transparent"
+                  ? "font-semibold text-black"
+                  : "text-gray-500"
               } focus:outline-none`}
               onClick={() => setActiveTab("additionalInfo")}
             >
@@ -48,8 +45,10 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           </li>
           <li>
             <button
-              className={`pb-2 border-b-2 ${
-                activeTab === "reviews" ? "border-black" : "border-transparent"
+              className={`pb-2 ${
+                activeTab === "reviews"
+                  ? "font-semibold text-black"
+                  : "text-gray-500"
               } focus:outline-none`}
               onClick={() => setActiveTab("reviews")}
             >
@@ -61,31 +60,26 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 
       <div className="my-6 md:my-10 px-4 md:px-12 h-fit">
         {activeTab === "description" && (
-          <div>
-            <h2 className="text-sm md:text-lg font-semibold">Description</h2>
-            <p className="text-sm md:text-base mt-2 text-gray-600">
-              {description}
+          <div className="w-[80%] mx-auto">
+            <p className="text-xs md:text-sm mt-2 text-gray-500">
+              {product.detailedDescription}
             </p>
           </div>
         )}
 
         {activeTab === "additionalInfo" && (
-          <div>
-            <h2 className="text-sm md:text-lg font-semibold">
-              Additional Information
-            </h2>
-            <p className=" text-sm md:text-base mt-2 text-gray-600">
-              {additionalInfo}
+          <div className="w-[80%] mx-auto">
+            <p className="text-xs md:text-sm mt-2 text-gray-500">
+              {product.additionalInfo}
             </p>
           </div>
         )}
 
         {activeTab === "reviews" && (
-          <div>
-            <h2 className="text-lg font-semibold pb-4">Customer Reviews</h2>
-            {reviews.length > 0 ? (
+          <div className="w-[80%] mx-auto">
+            {product.reviews.length > 0 ? (
               <div className="space-y-6">
-                {reviews.map((review, index) => (
+                {product.reviews.map((review, index) => (
                   <div
                     key={index}
                     className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-300"
@@ -95,7 +89,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
                         {review.user[0].toUpperCase()}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-sm md:text-base">
+                        <h4 className="font-semibold text-xs md:text-sm">
                           {review.user}
                         </h4>
                         <div className="flex">
@@ -129,15 +123,15 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         )}
       </div>
 
-      <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around">
-        {images.map((image, index) => (
+      <div className="w-full  grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around px-2 md:px-24">
+        {product.images.slice(-2).map((image, index) => (
           <Image
             key={index}
-            src={image}
-            alt={`Product Image ${index + 1}`}
-            width={400}
+            src={image.url}
+            alt={image.alt}
+            width={300}
             height={200}
-            className="w-full h-48 sm:h-72 object-cover bg-beige rounded-md"
+            className="w-full h-48 sm:h-72 object-cover bg-beige rounded-md p-12"
           />
         ))}
       </div>

@@ -1,10 +1,13 @@
 import React from "react";
-
-const CustomerSupport = () => {
+type Props = {
+  width: string;
+  height: string;
+};
+const CustomerSupport = ({height,width}:Props) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

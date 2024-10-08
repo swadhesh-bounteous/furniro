@@ -8,7 +8,7 @@ import { productDetails } from "@/utils/productData";
 const BreadCrumbNavigator = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get("id") ?? "id1"
-  const product = productDetails.find((product) => product.productId === Number(productId));
+  const product = productDetails.find((product) => product.id === Number(productId));
  
   const router = useRouter();
   return (

@@ -13,7 +13,6 @@ const page = () => {
         <Navbar />
         <UpperSection pageName="Shop" />
         <ShopGridSection />
-        <Pagination />
         <ShopFeatureSection />
         <Footer />
       </div>

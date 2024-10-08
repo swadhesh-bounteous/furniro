@@ -4,11 +4,11 @@ import share_icon from "../../../public/assets/icons/share_icon.svg";
 import compare from "../../../public/assets/icons/compare.svg";
 import like from "../../../public/assets/icons/like.svg";
 import Button from "./Button";
-import { ProductDetail } from "@/types/types";
+import { ProductApi, ProductDetail } from "@/types/types";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  product: ProductDetail;
+  product: ProductApi;
   index: number;
 };
 
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: Props) => {
   const router = useRouter(); 
 
   const handleClick = () => {
-    router.push(`/products/?id=${product.productId}`); 
+    router.push(`/products/?id=${product.id}`); 
   };
   return (
     <div

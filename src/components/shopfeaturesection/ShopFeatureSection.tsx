@@ -11,7 +11,7 @@ const ShopFeatureSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-center px-6 md:px-12 py-6 md:py-12 mx-auto ml-6">
         
         <div className="flex gap-4 items-center">
-          <TrophyIcon />
+          <TrophyIcon height="50" width="50" />
           <div className="flex flex-col justify-center">
             <Typography 
               variant="p" 
@@ -29,7 +29,7 @@ const ShopFeatureSection = () => {
         </div>
 
         <div className="flex gap-4 items-center">
-          <Warranty />
+          <Warranty height="50" width="50"/>
           <div className="flex flex-col justify-center">
             <Typography 
               variant="p" 
@@ -47,7 +47,7 @@ const ShopFeatureSection = () => {
         </div>
 
         <div className="flex gap-4 items-center">
-          <FreeShipping />
+          <FreeShipping height="50" width="50"/>
           <div className="flex flex-col justify-center">
             <Typography 
               variant="p" 
@@ -65,7 +65,7 @@ const ShopFeatureSection = () => {
         </div>
 
         <div className="flex gap-4 items-center">
-          <CustomerSupport />
+          <CustomerSupport height="50" width="50"/>
           <div className="flex flex-col justify-center">
             <Typography 
               variant="p" 

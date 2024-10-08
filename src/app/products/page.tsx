@@ -7,7 +7,7 @@ import { ProductDetails } from "@/components";
 import { ProductInfo } from "@/components";
 import { ToggleImageSection } from "@/components";
 import { productDetails } from "@/utils/productData";
-import {BreadCrumbNavigator} from "@/components";
+import { BreadCrumbNavigator } from "@/components";
 
 const ProductPage = () => {
   return (
@@ -21,10 +21,10 @@ const ProductContent = () => {
   const SearchParams = useSearchParams();
   const id = SearchParams.get("id") ?? "id2";
 
-  const product = productDetails.find((item) => item.productId === Number(id));
+  const product = productDetails.find((item) => item.id === Number(id));
 
   if (!product) {
-    return <p>Product not found</p>;
+    return <p>Not found</p>;
   }
 
   return (
@@ -35,15 +35,7 @@ const ProductContent = () => {
         <ToggleImageSection images={product.images} />
         <ProductDetails />
       </div>
-      <ProductInfo
-        description={product.detailedDesc}
-        additionalInfo={product.additionalInfo}
-        images={[
-          "/assets/images/three_seater_sofa_1.png",
-          "/assets/images/three_seater_sofa_2.png",
-        ]}
-        reviews={product.reviews}
-      />
+      <ProductInfo />
       <Footer />
     </div>
   );

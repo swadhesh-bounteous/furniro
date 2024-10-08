@@ -14,9 +14,9 @@ const ToggleImageSection: FC<ToggleImageSectionProps> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
   return (
-    <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 px-4 sm:px-8 md:px-16 py-4">
+    <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 px-4 sm:px-8 md:px-16">
       <div className="flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-4 overflow-x-auto">
-        {images.map((image, index) => {
+        {images.slice(0,-2).map((image, index) => {
           if (image !== selectedImage)
             return (
               <div
