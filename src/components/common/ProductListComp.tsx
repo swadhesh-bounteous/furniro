@@ -1,4 +1,4 @@
-import { ProductApi, ProductDetail } from "@/types/types";
+import { ProductApi } from "@/types/types";
 import Image from "next/image";
 import share_icon from "../../../public/assets/icons/share_icon.svg";
 import compare from "../../../public/assets/icons/compare.svg";
