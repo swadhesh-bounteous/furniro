@@ -1,4 +1,4 @@
-import { ProductApi, ProductDetail } from "@/types/types";
+import { ProductApi } from "@/types/types";
 
 export const productDetails: ProductApi[] = [
   {

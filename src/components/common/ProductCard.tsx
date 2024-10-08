@@ -4,7 +4,7 @@ import share_icon from "../../../public/assets/icons/share_icon.svg";
 import compare from "../../../public/assets/icons/compare.svg";
 import like from "../../../public/assets/icons/like.svg";
 import Button from "./Button";
-import { ProductApi, ProductDetail } from "@/types/types";
+import { ProductApi } from "@/types/types";
 import { useRouter } from "next/navigation";
 
 type Props = {

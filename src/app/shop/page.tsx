@@ -1,6 +1,5 @@
 import Footer from "@/components/common/Footer";
 import Navbar from "@/components/navbar/Navbar";
-import { Pagination } from "@/components";
 import { ShopFeatureSection } from "@/components";
 import { ShopGridSection } from "@/components";
 import { UpperSection } from "@/components";

@@ -8,9 +8,6 @@ import four_dots from "../../../public/assets/icons/four_dots.svg";
 import view_list from "../../../public/assets/icons/view_list.svg";
 import line from "../../../public/assets/icons/line.svg";
 import Pagination from "../pagination/Pagination";
-import { useQuery } from "@tanstack/react-query";
-import fetchProducts from "@/hooks/useProduct";
-import { ProductApi } from "@/types/types";
 import useGetProducts from "@/hooks/useProduct";
 import ProductListComp from "../common/ProductListComp";
 
@@ -22,7 +19,7 @@ const ShopGridSection = () => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewType, setViewType] = useState<"grid" | "list">("grid"); // New state for view type
+  const [viewType, setViewType] = useState<"grid" | "list">("grid"); 
 
   const handleShowChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -63,7 +60,7 @@ const ShopGridSection = () => {
 
   const { data: products, isLoading, isError } = useGetProducts();
 
-  console.log(products);
+  console.log(products,isLoading,isError);
 
   return (
     <>
