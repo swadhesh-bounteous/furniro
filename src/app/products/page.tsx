@@ -6,8 +6,9 @@ import Footer from "@/components/common/Footer";
 import { ProductDetails } from "@/components";
 import { ProductInfo } from "@/components";
 import { ToggleImageSection } from "@/components";
-import { productDetails } from "@/utils/productData";
 import { BreadCrumbNavigator } from "@/components";
+import useGetProductById from "@/hooks/useGetProductById";
+import { ProductApi } from "@/types/types";
 
 const ProductPage = () => {
   return (
@@ -21,21 +22,17 @@ const ProductContent = () => {
   const SearchParams = useSearchParams();
   const id = SearchParams.get("id") ?? "id2";
 
-  const product = productDetails.find((item) => item.id === Number(id));
-
-  if (!product) {
-    return <p>Not found</p>;
-  }
+  const { data: product, isLoading, isSuccess } = useGetProductById(Number(id)); 
 
   return (
     <div className="flex flex-col">
       <Navbar />
-      <BreadCrumbNavigator />
+      <BreadCrumbNavigator product={product as ProductApi} isLoading={isLoading}/>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 my-8">
-        <ToggleImageSection images={product.images} />
-        <ProductDetails />
+        <ToggleImageSection images={(product as ProductApi)?.images} isLoading={isLoading} isSuccess={isSuccess} />
+        <ProductDetails product={product as ProductApi} isLoading={isLoading}/>
       </div>
-      <ProductInfo />
+      <ProductInfo product={product as ProductApi} isLoading={isLoading}/>
       <Footer />
     </div>
   );

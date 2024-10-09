@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <div className="hidden lg:flex gap-x-6 items-center">
+        <div className="hidden lg:flex gap-x-8 items-center">
           <Link href="/user">
             <Image src={usericon} alt="User" className="w-6 h-6" />
           </Link>

@@ -1,18 +1,47 @@
 "use client";
-import { productDetails } from "@/utils/productData";
+import { ProductApi } from "@/types/types";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
-const ProductInfo = () => {
+type Props = {
+  product: ProductApi;
+  isLoading: boolean;
+};
+
+const SkeletonProductInfo = () => {
+  return (
+    <div className="p-6 md:p-12 border-t border-gray-300 animate-pulse">
+      <div className="flex justify-center mb-6">
+        <div className="w-24 h-6 bg-gray-200 rounded-md"></div>
+      </div>
+      <div className="space-y-6">
+        <div className="w-[80%] mx-auto h-24 bg-gray-200 rounded-md"></div>
+        <div className="w-[80%] mx-auto h-24 bg-gray-200 rounded-md"></div>
+        <div className="w-[80%] mx-auto h-24 bg-gray-200 rounded-md"></div>
+      </div>
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around mt-6">
+        <div className="w-full h-48 sm:h-72 bg-gray-200 rounded-md"></div>
+        <div className="w-full h-48 sm:h-72 bg-gray-200 rounded-md"></div>
+      </div>
+    </div>
+  );
+};
+
+const ProductInfo = ({ product, isLoading }: Props) => {
   const [activeTab, setActiveTab] = useState("description");
+  const [fadeIn, setFadeIn] = useState(true);
 
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id") ?? "id2";
+  const handleTabChange = (tab: string) => {
+    setFadeIn(false);
 
-  const product = productDetails.find((item) => item.id === Number(id));
-  if (!product) {
-    return <p>Product not found</p>;
+    setTimeout(() => {
+      setActiveTab(tab);
+      setFadeIn(true); 
+    }, 300); 
+  };
+
+  if (isLoading) {
+    return <SkeletonProductInfo />;
   }
 
   return (
@@ -26,7 +55,7 @@ const ProductInfo = () => {
                   ? "font-semibold text-black"
                   : "text-gray-500"
               } focus:outline-none`}
-              onClick={() => setActiveTab("description")}
+              onClick={() => handleTabChange("description")}
             >
               Description
             </button>
@@ -38,7 +67,7 @@ const ProductInfo = () => {
                   ? "font-semibold text-black"
                   : "text-gray-500"
               } focus:outline-none`}
-              onClick={() => setActiveTab("additionalInfo")}
+              onClick={() => handleTabChange("additionalInfo")}
             >
               Additional Info
             </button>
@@ -50,7 +79,7 @@ const ProductInfo = () => {
                   ? "font-semibold text-black"
                   : "text-gray-500"
               } focus:outline-none`}
-              onClick={() => setActiveTab("reviews")}
+              onClick={() => handleTabChange("reviews")}
             >
               Reviews
             </button>
@@ -58,7 +87,11 @@ const ProductInfo = () => {
         </ul>
       </div>
 
-      <div className="my-6 md:my-10 px-4 md:px-12 h-fit">
+      <div
+        className={`my-6 md:my-10 px-4 md:px-12 h-fit transition-opacity duration-300 ${
+          fadeIn ? "opacity-100" : "opacity-0"
+        }`}
+      >
         {activeTab === "description" && (
           <div className="w-[80%] mx-auto">
             <p className="text-xs md:text-sm mt-2 text-gray-500">
@@ -93,11 +126,13 @@ const ProductInfo = () => {
                           {review.user}
                         </h4>
                         <div className="flex">
-                          {[...Array(Math.floor(review.rating))].map((_, i) => (
-                            <span key={i} className="text-yellow-400">
-                              ★
-                            </span>
-                          ))}
+                          {[...Array(Math.floor(review.rating))].map(
+                            (_, i) => (
+                              <span key={i} className="text-yellow-400">
+                                ★
+                              </span>
+                            )
+                          )}
                           {[...Array(5 - Math.floor(review.rating))].map(
                             (_, i) => (
                               <span key={i} className="text-gray-300">
@@ -115,15 +150,13 @@ const ProductInfo = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">
-                No reviews yet. Be the first to review!
-              </p>
+              <p className="text-gray-500">No reviews yet. Be the first to review!</p>
             )}
           </div>
         )}
       </div>
 
-      <div className="w-full  grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around px-2 md:px-24">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around px-2 md:px-24">
         {product.images.slice(-2).map((image, index) => (
           <Image
             key={index}
@@ -131,7 +164,7 @@ const ProductInfo = () => {
             alt={image.alt}
             width={300}
             height={200}
-            className="w-full h-48 sm:h-72 object-cover bg-beige rounded-md p-12"
+            className="w-full h-48 sm:h-72 object-contain bg-beige rounded-md"
           />
         ))}
       </div>

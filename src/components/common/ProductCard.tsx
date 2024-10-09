@@ -9,15 +9,18 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   product: ProductApi;
-  index: number;
 };
 
 const ProductCard = ({ product }: Props) => {
-  const router = useRouter(); 
+  
+  const router = useRouter();
+  console.log("Before click",product);
 
   const handleClick = () => {
-    router.push(`/products/?id=${product.id}`); 
+    console.log("Product",product);
+    router.push(`/products/?id=${product.id}`);
   };
+
   return (
     <div
       className="relative border border-gray-200 rounded-sm overflow-hidden shadow-sm group cursor-pointer"
@@ -32,7 +35,7 @@ const ProductCard = ({ product }: Props) => {
       {product.discount && (
         <div
           className={`absolute top-2 right-2 ${
-            product.discount == "New" ? `bg-green-500` : "bg-red-500"
+            product.discount === "New" ? "bg-green-500" : "bg-red-500"
           } text-white text-xs font-bold px-2 py-1 rounded-full`}
         >
           {product.discount}
@@ -63,7 +66,7 @@ const ProductCard = ({ product }: Props) => {
       </div>
 
       <div className="p-4">
-        <h2 className="text-lg font-semibold">{product.name}</h2>
+        <h2 className="text-lg font-semibold">{product?.name}</h2>
         <p className="text-gray-500 text-sm">{product.description}</p>
         <div className="mt-2">
           <span className="text-black font-semibold">Rp {product.price}</span>
@@ -79,3 +82,4 @@ const ProductCard = ({ product }: Props) => {
 };
 
 export default ProductCard;
+

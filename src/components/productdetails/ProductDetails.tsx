@@ -1,25 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Button from "../common/Button";
 import FaceBook from "../../../public/assets/icons/FaceBook";
 import Linkedin from "../../../public/assets/icons/Linkedin";
 import Twitter from "../../../public/assets/icons/Twitter";
-import { productDetails } from "@/utils/productData";
+import { ProductApi } from "@/types/types";
 
-const ProductDetails = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id") ?? "id2";
+type Props = {
+  product: ProductApi;
+  isLoading: boolean;
+};
 
+const ProductDetails = ({ product, isLoading }: Props) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-
-  const product = productDetails.find((item) => item.id === Number(id));
-
-  if (!product) {
-    return <p>Product not found</p>;
-  }
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
@@ -27,6 +22,73 @@ const ProductDetails = () => {
 
   const handleSizeSelect = (size: string) => setSelectedSize(size);
   const handleColorSelect = (color: string) => setSelectedColor(color);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col px-4 sm:px-8 md:px-16 space-y-4 animate-pulse">
+        <div className="h-8 md:h-16 bg-gray-300 rounded w-3/4"></div>
+        <div className="h-6 md:h-8 bg-gray-300 rounded w-1/4"></div>
+        <div className="flex items-center space-x-2">
+          <div className="flex space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="h-6 w-6 bg-gray-300 rounded-full"></span>
+            ))}
+          </div>
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+        </div>
+        <div className="h-6 bg-gray-300 rounded w-full"></div>
+        <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+
+        <div className="flex flex-col items-start space-y-2">
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          <div className="flex space-x-2">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="h-8 w-8 bg-gray-300 rounded-md"
+              ></div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col items-start space-y-2">
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          <div className="flex space-x-4">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="h-8 w-8 rounded-full bg-gray-300"
+              ></div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-y-4 md:flex-row md:space-x-4 pb-8">
+          <div className="flex space-x-4 items-center rounded-lg border-gray-400 border-[1px] w-full md:w-auto">
+            <div className="px-3 py-4 text-xl md:text-base w-full md:w-auto bg-gray-300 rounded"></div>
+            <div className="text-center flex-1 h-8 bg-gray-300 rounded"></div>
+            <div className="px-3 py-4 text-xl md:text-base w-full md:w-auto bg-gray-300 rounded"></div>
+          </div>
+          <div className="h-10 w-full md:w-auto bg-gray-300 rounded"></div>
+          <div className="h-10 w-full md:w-auto bg-gray-300 rounded"></div>
+        </div>
+
+        <div className="border-t border-gray-300 flex flex-col gap-3 text-gray-600 font-light pt-8 text-sm">
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          <div className="flex space-x-4">
+            <span className="h-4 bg-gray-300 rounded w-1/4"></span>
+            <div className="flex space-x-4">
+              <div className="h-8 w-8 bg-gray-300 rounded-full"></div>
+              <div className="h-8 w-8 bg-gray-300 rounded-full"></div>
+              <div className="h-8 w-8 bg-gray-300 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col px-4 sm:px-8 md:px-16 space-y-4">
@@ -66,7 +128,7 @@ const ProductDetails = () => {
       </div>
 
       <div className="flex flex-col items-start">
-        <p className="mb-2">Color:</p> 
+        <p className="mb-2">Color:</p>
         <div className="flex space-x-4">
           {product.colors.map((color, index) => (
             <span
@@ -82,7 +144,7 @@ const ProductDetails = () => {
       </div>
 
       <div className="flex flex-col gap-y-4 md:flex-row md:space-x-4 pb-8">
-        <div className="flex space-x-4 items-center rounded-lg border-gray-400 border-[1px] w-full md:w-auto">
+        <div className="flex space-x-4 items-center rounded-lg border-gray-400 border-[1px] w-full md:w-32">
           <button
             className="px-3 py-4 text-xl md:text-base w-full md:w-auto"
             onClick={decrementQuantity}

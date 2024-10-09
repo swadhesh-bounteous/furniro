@@ -6,7 +6,7 @@ import React, { Suspense } from "react";
 
 const page = () => {
   return (
-    <Suspense fallback={<div>Error Try again</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className="flex flex-col">
         <Navbar />
         <UpperSection pageName="Cart" />
