@@ -45,7 +45,7 @@ const ProductInfo = ({ product, isLoading }: Props) => {
   }
 
   return (
-    <div className="p-6 md:p-12 border-t border-gray-300">
+    <div className="p-6 md:p-12 border-y border-gray-300">
       <div>
         <ul className="flex space-x-8 md:space-x-24 justify-center text-sm md:text-xl">
           <li>
@@ -115,10 +115,10 @@ const ProductInfo = ({ product, isLoading }: Props) => {
                 {product.reviews.map((review, index) => (
                   <div
                     key={index}
-                    className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-300"
+                    className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-darkbeige"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-beigerounded-full flex items-center justify-center">
                         {review.user[0].toUpperCase()}
                       </div>
                       <div>

@@ -11,7 +11,7 @@ import useGetProducts from "@/hooks/useGetProducts";
 import ProductListComp from "../common/ProductListComp";
 import { ProductApi } from "@/types/types";
 
-const categories = ["All", "Tables", "Chairs", "Sofas", "Fans"];
+const categories = ["All", "Tables", "Chairs", "Sofas", "Lighting"];
 
 const ShopGridSection = () => {
   const [productsToShow, setProductsToShow] = useState(16);
@@ -148,7 +148,7 @@ const ShopGridSection = () => {
         </div>
       </section>
 
-      <section className="px-12 md:px-24 py-6 font-Poppins">
+      <section className="px-12 md:px-24 py-6">
         {viewType === "grid" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-8">
             {paginatedProducts.map((product) => (

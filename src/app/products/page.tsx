@@ -9,6 +9,7 @@ import { ToggleImageSection } from "@/components";
 import { BreadCrumbNavigator } from "@/components";
 import useGetProductById from "@/hooks/useGetProductById";
 import { ProductApi } from "@/types/types";
+import RelatedProducts from "@/components/relatedproducts/RelatedProducts";
 
 const ProductPage = () => {
   return (
@@ -33,6 +34,7 @@ const ProductContent = () => {
         <ProductDetails product={product as ProductApi} isLoading={isLoading}/>
       </div>
       <ProductInfo product={product as ProductApi} isLoading={isLoading}/>
+      <RelatedProducts category={(product as ProductApi)?.category}/>
       <Footer />
     </div>
   );

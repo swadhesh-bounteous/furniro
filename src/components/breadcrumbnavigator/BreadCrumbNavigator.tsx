@@ -36,7 +36,7 @@ const BreadCrumbNavigator = ({ product, isLoading }: Props) => {
       <div className="flex flex-row gap-6 items-center justify-between">
         <Typography
           variant="p"
-          className="text-xl text-[#9F9F9F] font-[400] hover:cursor-pointer hover:underline"
+          className="text-base text-[#9F9F9F] font-[400] hover:cursor-pointer hover:underline"
         >
           <span onClick={() => router.push("/home")}>Home</span>
         </Typography>
@@ -45,7 +45,7 @@ const BreadCrumbNavigator = ({ product, isLoading }: Props) => {
 
         <Typography
           variant="p"
-          className="text-xl text-[#9F9F9F] font-[400] hover:cursor-pointer hover:underline"
+          className="text-base text-[#9F9F9F] font-[400] hover:cursor-pointer hover:underline"
         >
           <span onClick={() => router.push("/shop")}>Shop</span>
         </Typography>

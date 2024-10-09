@@ -10,7 +10,7 @@ const fetchProducts = async (): Promise<Array<ProductApi>> => {
 
 const useGetProducts = () => {
     return useQuery({
-      queryKey: ['posts'],
+      queryKey: ['products'],
       queryFn: () => fetchProducts(),
       staleTime: 0
     })
