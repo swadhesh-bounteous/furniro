@@ -18,11 +18,11 @@ const ShopGridSection = () => {
   const [sortOrder, setSortOrder] = useState("default");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
 
-  const { data: productDetails = [], isLoading, isError } = useGetProducts();
+  const { data: productDetails = [] } = useGetProducts();
 
   const handleShowChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -51,7 +51,9 @@ const ShopGridSection = () => {
 
     let filtered = products;
     if (selectedCategory !== "All") {
-      filtered = filtered.filter((product) => product.category === selectedCategory);
+      filtered = filtered.filter(
+        (product) => product.category === selectedCategory
+      );
     }
 
     if (searchQuery) {
@@ -111,10 +113,7 @@ const ShopGridSection = () => {
 
           <span className="text-[14px] sm:text-[16px] text-center sm:text-left">
             Showing {(currentPage - 1) * productsToShow + 1}-
-            {Math.min(
-              currentPage * productsToShow,
-              filteredProducts().length
-            )}{" "}
+            {Math.min(currentPage * productsToShow, filteredProducts().length)}{" "}
             of {filteredProducts().length} results
           </span>
         </div>
