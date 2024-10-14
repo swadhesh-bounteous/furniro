@@ -12,7 +12,7 @@ type Props = {
 };
 
 const ProductDetails = ({ product, isLoading }: Props) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
