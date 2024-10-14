@@ -18,12 +18,11 @@ const ShopGridSection = () => {
   const [sortOrder, setSortOrder] = useState("default");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
 
   const { data: productDetails = [], isLoading, isError } = useGetProducts();
-
-  console.log(productDetails, isLoading, isError);
 
   const handleShowChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -49,10 +48,19 @@ const ShopGridSection = () => {
 
   const filteredProducts = () => {
     const products = sortedProducts(productDetails);
-    if (selectedCategory === "All") {
-      return products;
+
+    let filtered = products;
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((product) => product.category === selectedCategory);
     }
-    return products.filter((product) => product.category === selectedCategory);
+
+    if (searchQuery) {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return filtered;
   };
 
   const totalPages = Math.ceil(filteredProducts().length / productsToShow);
@@ -68,7 +76,9 @@ const ShopGridSection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-y-4 sm:gap-y-0 gap-x-4 md:gap-x-8">
           <div className="flex gap-x-4 sm:gap-x-8 items-center">
             <div
-              className={`flex gap-x-2 sm:gap-x-4 items-center cursor-pointer ${isFilterVisible && 'bg-darkbeige rounded-md p-2'}`}
+              className={`flex gap-x-2 sm:gap-x-4 items-center cursor-pointer ${
+                isFilterVisible && "bg-darkbeige rounded-md p-2"
+              }`}
               onClick={() => setIsFilterVisible(!isFilterVisible)}
             >
               <Image
@@ -81,30 +91,43 @@ const ShopGridSection = () => {
             <Image
               src={four_dots}
               alt="four dots"
-              className={`w-5 h-5 sm:w-6 sm:h-6 cursor-pointer ${viewType === "grid" && 'bg-darkbeige rounded-md w-6 h-6 sm:w-8 sm:h-8 p-2'}`}
-              onClick={() =>
-                setViewType("grid")
-              }
+              className={`w-5 h-5 sm:w-6 sm:h-6 cursor-pointer ${
+                viewType === "grid" &&
+                "bg-darkbeige rounded-md w-6 h-6 sm:w-8 sm:h-8 p-2"
+              }`}
+              onClick={() => setViewType("grid")}
             />
             <Image
               src={view_list}
               alt="view list"
-              className={`w-5 h-5 sm:w-6 sm:h-6 cursor-pointer ${viewType === "list" && 'bg-darkbeige rounded-md w-6 h-6 sm:w-8 sm:h-8 p-2'}`}
-              onClick={() =>
-                setViewType("list")
-              }
+              className={`w-5 h-5 sm:w-6 sm:h-6 cursor-pointer ${
+                viewType === "list" &&
+                "bg-darkbeige rounded-md w-6 h-6 sm:w-8 sm:h-8 p-2"
+              }`}
+              onClick={() => setViewType("list")}
             />
             <Image src={line} alt="line" className="w-5 h-8 sm:w-6 sm:h-10" />
           </div>
 
           <span className="text-[14px] sm:text-[16px] text-center sm:text-left">
             Showing {(currentPage - 1) * productsToShow + 1}-
-            {Math.min(currentPage * productsToShow, filteredProducts().length)}{" "}
+            {Math.min(
+              currentPage * productsToShow,
+              filteredProducts().length
+            )}{" "}
             of {filteredProducts().length} results
           </span>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 gap-x-4 sm:gap-x-8 items-center">
+          <input
+            type="text"
+            placeholder="Search products"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="px-4 py-2 bg-white border border-gray-300 rounded-md"
+          />
+
           {isFilterVisible && (
             <div className="flex items-center gap-x-2">
               <span>Category filter </span>
@@ -148,7 +171,7 @@ const ShopGridSection = () => {
         </div>
       </section>
 
-      <section className="px-12 md:px-24 py-6">
+      <section className="px-12 md:px-24 py-12">
         {viewType === "grid" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-8">
             {paginatedProducts.map((product) => (

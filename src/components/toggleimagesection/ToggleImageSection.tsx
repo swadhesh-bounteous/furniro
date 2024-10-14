@@ -51,7 +51,7 @@ const ToggleImageSection: FC<ToggleImageSectionProps> = ({ images, isLoading, is
                 <img
                   src={image.url}
                   alt={image.alt}
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-beige object-contain transition-transform transform group-hover:scale-110 duration-300"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-beige object-cover transition-transform transform group-hover:scale-110 duration-300"
                 />
               </div>
             );
@@ -62,7 +62,7 @@ const ToggleImageSection: FC<ToggleImageSectionProps> = ({ images, isLoading, is
         <img
           src={selectedImage?.url}
           alt={selectedImage?.alt}
-          className="w-full h-full rounded-lg bg-beige object-contain"
+          className="w-full h-full rounded-lg bg-beige object-cover"
         />
       </div>
     </div>

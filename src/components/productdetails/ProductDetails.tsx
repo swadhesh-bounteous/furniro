@@ -91,7 +91,7 @@ const ProductDetails = ({ product, isLoading }: Props) => {
   }
 
   return (
-    <div className="flex flex-col px-4 sm:px-8 md:px-16 space-y-4">
+    <div className="flex flex-col px-8 sm:px-8 md:px-16 space-y-4 py-4">
       <h1 className="text-2xl md:text-5xl font-normal">{product.name}</h1>
       <p className="text-lg md:text-xl font-normal text-gray-500">
         Rs. {product.price.toFixed(2)}

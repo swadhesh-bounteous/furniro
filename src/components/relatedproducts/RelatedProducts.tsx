@@ -34,7 +34,7 @@ const RelatedProducts = ({ category }: Props) => {
   return (
     <div className="flex flex-col py-6 px-4 md:py-12 ">
       <span className="text-lg md:text-2xl font-semibold pb-8 text-center">Related Products</span>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-8 px-12 md:px-24 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-8 px-8 md:px-24 py-2">
         {productDetails.slice(0, visibleCount).map((product: ProductApi) => (
           <ProductCard key={product.id} product={product} />
         ))}

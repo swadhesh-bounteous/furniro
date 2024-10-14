@@ -36,13 +36,13 @@ const ProductCard = ({ product }: Props) => {
         <div
           className={`absolute top-2 right-2 ${
             product.discount === "New" ? "bg-green-500" : "bg-red-500"
-          } text-white text-xs font-bold px-2 py-1 rounded-full`}
+          } text-white text-xs font-bold px-2 py-3 rounded-full`}
         >
           {product.discount}
         </div>
       )}
 
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ">
         <Button
           variant="v2"
           size="large"

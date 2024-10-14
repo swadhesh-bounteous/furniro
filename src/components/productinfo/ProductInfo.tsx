@@ -118,7 +118,7 @@ const ProductInfo = ({ product, isLoading }: Props) => {
                     className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-darkbeige"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 md:w-10 md:h-10 bg-beigerounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-beigerounded-full flex items-center justify-center bg-beige rounded-full">
                         {review.user[0].toUpperCase()}
                       </div>
                       <div>
@@ -156,7 +156,7 @@ const ProductInfo = ({ product, isLoading }: Props) => {
         )}
       </div>
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 justify-around px-2 md:px-24">
+      <div className="w-[80%] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-4 justify-between px-2 md:px-16">
         {product.images.slice(-2).map((image, index) => (
           <Image
             key={index}
@@ -164,7 +164,7 @@ const ProductInfo = ({ product, isLoading }: Props) => {
             alt={image.alt}
             width={300}
             height={200}
-            className="w-full h-48 sm:h-72 object-contain bg-beige rounded-md"
+            className="w-full h-48 sm:h-72 object-cover bg-beige rounded-md"
           />
         ))}
       </div>
